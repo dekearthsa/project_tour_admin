@@ -9,7 +9,7 @@ import SideBar from './components/sidebar/SideBar.vue';
       <div>
         <SideBar/>
       </div>
-      <div class="ml-10">
+      <div >
         <RouterView />
       </div>
     </div>
