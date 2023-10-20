@@ -4,6 +4,6 @@
 
 <template>
   <div>
-    Home pages
+    <div class="title">home</div>
   </div>
 </template>

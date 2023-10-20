@@ -1,5 +1,8 @@
 <script setup>
     import {ref} from "vue";
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter();
     const haddleCssMenu = ref("m-navbar-open")
     const haddleCloseMenu = () => {
         if(haddleCssMenu.value === 'm-navbar-open'){
@@ -7,8 +10,18 @@
         }else{
             haddleCssMenu.value = "m-navbar-open"
         }
-        
-        // console.log(haddleCssMenu.value)
+    }
+
+    const haddleRouter = (page) => {
+        if(page === "home"){
+            router.push({path:"/"})
+        }else if(page === "content"){
+            router.push({path:"/content"})
+        }else if(page === "product"){
+            router.push({path:"/product"})
+        }else if(page === "login"){
+            router.push({path:"/login"})
+        }
     }
 </script>
 
@@ -27,7 +40,7 @@
                 </div>
             </div>
             <div class="ml-10 font-bold text-white" >
-                <div class="mt-10 flex" v-if="haddleCssMenu === 'm-navbar-open'">
+                <div class="mt-10 flex" v-if="haddleCssMenu === 'm-navbar-open'" @click="haddleRouter('home')">
                     <div class="mr-5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff" class="w-6 h-6">
                             <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
@@ -38,7 +51,7 @@
                         Home
                     </div>
                 </div>
-                <div class="mt-10 flex" v-if="haddleCssMenu === 'm-navbar-open'">
+                <div class="mt-10 flex" v-if="haddleCssMenu === 'm-navbar-open'" @click="haddleRouter('content')">
                     <div class="mr-5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff" class="w-6 h-6">
                             <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z" />
@@ -50,7 +63,7 @@
                     </div>
                     
                 </div>
-                <div class="mt-10 flex" v-if="haddleCssMenu === 'm-navbar-open'">
+                <div class="mt-10 flex" v-if="haddleCssMenu === 'm-navbar-open'" @click="haddleRouter('product')">
                     <div class="mr-5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff" class="w-6 h-6">
                             <path d="M9.375 3a1.875 1.875 0 000 3.75h1.875v4.5H3.375A1.875 1.875 0 011.5 9.375v-.75c0-1.036.84-1.875 1.875-1.875h3.193A3.375 3.375 0 0112 2.753a3.375 3.375 0 015.432 3.997h3.943c1.035 0 1.875.84 1.875 1.875v.75c0 1.036-.84 1.875-1.875 1.875H12.75v-4.5h1.875a1.875 1.875 0 10-1.875-1.875V6.75h-1.5V4.875C11.25 3.839 10.41 3 9.375 3zM11.25 12.75H3v6.75a2.25 2.25 0 002.25 2.25h6v-9zM12.75 12.75v9h6.75a2.25 2.25 0 002.25-2.25v-6.75h-9z" />
@@ -63,7 +76,7 @@
             </div>
         </div>
         <div class="footer bg-slate-300 font-bold">
-            <div class="flex ml-10" v-if="haddleCssMenu === 'm-navbar-open'">
+            <div class="flex ml-10" v-if="haddleCssMenu === 'm-navbar-open'" @click="haddleRouter('login')">
                 <div class="mr-5 mt-20" >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                         <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.06-1.06l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z" clip-rule="evenodd" />
