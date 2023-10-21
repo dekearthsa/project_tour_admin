@@ -9,7 +9,7 @@ import SideBar from './components/sidebar/SideBar.vue';
       <div>
         <SideBar/>
       </div>
-      <div >
+      <div class="w-[100%]">
         <RouterView />
       </div>
     </div>
