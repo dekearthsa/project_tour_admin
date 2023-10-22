@@ -21,11 +21,15 @@
 
 
 <template>
-    <div>
+    <div class="set-content">
         <div class="ml-3 mr-3 mt-5"> 
             <div class="title text-[18px] font-bold">Content</div>
             <div class="c-desc border-t-[1px] border-neutral-300 w-[100%]">
                 <div class="mt-10 ">
+                    <div class="mb-5">
+                        <label class="mr-5">Title</label>
+                        <input class="border-[1px] w-[300px] rounded-md border-neutral-500"/>
+                    </div>
                     <div>
                         <textarea class="border-neutral-500 border-[1px] w-[100%] h-[35vh] rounded-md"></textarea>
                     </div>
@@ -47,16 +51,103 @@
                         Content list
                     </div>
                     <div >
-                        <div class="content-list flex ">    
-                            <div class="rounded-md mt-3 card ml-3 mr-3 h-[320px] w-[400px] border-[1px] border-red-500">aosdko</div>
-                            <div class="rounded-md mt-3 card ml-3 mr-3 h-[320px] w-[400px] border-[1px] border-red-500">aosdko</div>
-                            <div class="rounded-md mt-3 card ml-3 mr-3 h-[320px] w-[400px] border-[1px] border-red-500">aosdko</div>
-                            <div class="rounded-md mt-3 card ml-3 mr-3 h-[320px] w-[400px] border-[1px] border-red-500">aosdko</div>
-                            <div class="rounded-md mt-3 card ml-3 mr-3 h-[320px] w-[400px] border-[1px] border-red-500">aosdko</div>
-                            <div class="rounded-md mt-3 card ml-3 mr-3 h-[320px] w-[400px] border-[1px] border-red-500">aosdko</div>
-                            <div class="rounded-md mt-3 card ml-3 mr-3 h-[320px] w-[400px] border-[1px] border-red-500">aosdko</div>
+                        <div class="content-list pb-4">   
+                            <!--card -->
+                            <div class="rounded-md mt-3 c-card ml-3 mr-3  w-[300px] border-[1px] border-neutral-500  ">
+                                <div class="title-card font-bold ml-3">THAILAND</div>
+                                <div>
+                                    <img class="text-center m-auto" src="../assets/bkk.jpg" width="270" height="200"/>
+                                </div>
+                                <div class="desc-text ml-3 mr-3 overflow-y-scroll h-[130px]">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint labore reiciendis ipsam autem explicabo nobis repellat ad facilis, minus eveniet molestiae excepturi voluptates molestias, natus quod vel minima iure?
+                                </div>
+                                <div class="container-c flex justify-around h-[50px] mt-3">
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
+                            <!--card -->
+                            <div class="rounded-md mt-3 c-card ml-3 mr-3  w-[300px] border-[1px] border-neutral-500  ">
+                                <div class="title-card font-bold ml-3">THAILAND</div>
+                                <div>
+                                    <img class="text-center m-auto" src="../assets/bkk.jpg" width="270" height="200"/>
+                                </div>
+                                <div class="desc-text ml-3 mr-3 overflow-y-scroll h-[130px]">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint labore reiciendis ipsam autem explicabo nobis repellat ad facilis, minus eveniet molestiae excepturi voluptates molestias, natus quod vel minima iure?
+                                </div>
+                                <div class="container-c flex justify-around h-[50px] mt-3">
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
+                            <!--card -->
+                            <div class="rounded-md mt-3 c-card ml-3 mr-3  w-[300px] border-[1px] border-neutral-500  ">
+                                <div class="title-card font-bold ml-3">THAILAND</div>
+                                <div>
+                                    <img class="text-center m-auto" src="../assets/bkk.jpg" width="270" height="200"/>
+                                </div>
+                                <div class="desc-text ml-3 mr-3 overflow-y-scroll h-[130px]">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint labore reiciendis ipsam autem explicabo nobis repellat ad facilis, minus eveniet molestiae excepturi voluptates molestias, natus quod vel minima iure?
+                                </div>
+                                <div class="container-c flex justify-around h-[50px] mt-3">
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
+                            <!--card -->
+                            <div class="rounded-md mt-3 c-card ml-3 mr-3  w-[300px] border-[1px] border-neutral-500  ">
+                                <div class="title-card font-bold ml-3">THAILAND</div>
+                                <div>
+                                    <img class="text-center m-auto" src="../assets/bkk.jpg" width="270" height="200"/>
+                                </div>
+                                <div class="desc-text ml-3 mr-3 overflow-y-scroll h-[130px]">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint labore reiciendis ipsam autem explicabo nobis repellat ad facilis, minus eveniet molestiae excepturi voluptates molestias, natus quod vel minima iure?
+                                </div>
+                                <div class="container-c flex justify-around h-[50px] mt-3">
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
+                            <!--card -->
+                            <div class="rounded-md mt-3 c-card ml-3 mr-3  w-[300px] border-[1px] border-neutral-500  ">
+                                <div class="title-card font-bold ml-3">THAILAND</div>
+                                <div>
+                                    <img class="text-center m-auto" src="../assets/bkk.jpg" width="270" height="200"/>
+                                </div>
+                                <div class="desc-text ml-3 mr-3 overflow-y-scroll h-[130px]">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint labore reiciendis ipsam autem explicabo nobis repellat ad facilis, minus eveniet molestiae excepturi voluptates molestias, natus quod vel minima iure?
+                                </div>
+                                <div class="container-c flex justify-around h-[50px] mt-3">
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card -->
                         </div>
-
                     </div>
                 </div>
             </div>  
@@ -67,6 +158,10 @@
 
 
 <style scoped>
+.set-content{
+    overflow-y: scroll;
+    height: 100vh;
+}
 .set-img{
     max-width: 300px;
     max-height: 300px;
@@ -79,8 +174,19 @@
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
+
+ 
 .content-list{
-    overflow-x: scroll;
+    display:  grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.btn-crud{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.btn-crud:active{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 </style>
