@@ -1,14 +1,85 @@
 <script setup>
     import {ref} from "vue";
+    import ContentReview from "../components/imageSilder/ContentReview.vue"
+
+    const productTitle = ref("");
 
     const arrayImage = ref();
     const arrayImgUrl = ref();
     const arrayObj = ref([]);
+    const isIntroduction =ref("");
     const isObj = ref();
     const isDay = ref(1);
     const dayTitle = ref("");
-    const dayContent = ref("")
-    const contentDay = ref([])
+    const dayContent = ref("");
+    const contentDay = ref([]);
+
+    const pricePerPersion = ref([]);
+    const isPerson = ref();
+    const isPrice = ref("");
+    
+    const arrayInclude = ref([]);
+    const includeDesc = ref("");
+
+    const arrayExclusive = ref([]);
+    const ExclusiveDesc = ref("");
+
+    const arrayOfContent = ref([]);
+    const errorCreate = ref("");
+
+    const btnCreateArrayOfContent = async () => {
+        const setIntro = isIntroduction.value.trim();
+        const setTitle = productTitle.value.trim();
+        // console.log(productTitle.value)
+        // console.log(isIntroduction.value)
+
+        const payload = {
+            productTitle: setTitle,
+            introduction: setIntro,
+            arrayimg: arrayImgUrl.value,
+            arrayPrice: pricePerPersion.value,
+            arrayInclude: arrayInclude.value,
+            arrayExclusive: arrayExclusive.value,
+            arrayContent: contentDay.value,
+        }
+        arrayOfContent.value.push(payload)
+        console.log(arrayOfContent.value)
+
+
+        // if(setTitle === ""){
+        //     if(arrayObj.value.length === 0 ){
+        //         if(setIntro === ""){
+        //             if(pricePerPersion.value.length === 0){
+        //                 if(arrayInclude.value.length === 0){
+        //                     if(arrayExclusive.value.length === 0){
+        //                         if(contentDay.value.length === 0){
+        //                             errorCreate.value = "Content day cannot be empty"
+        //                         }else{
+        //                             const payload = {
+        //                                 productTitle: setTitle,
+        //                                 introduction: setIntro,
+        //                                 arrayimg: arrayImgUrl,
+        //                                 arrayPrice: pricePerPersion,
+        //                                 arrayInclude: arrayInclude,
+        //                                 arrayExclusive: arrayExclusive,
+        //                                 arrayContent: contentDay,
+        //                             }
+        //                             arrayOfContent.value.push(payload)
+        //                         }
+        //                         errorCreate.value = "Exclusive cannot be empty"
+        //                     }
+        //                     errorCreate.value = "Include benefit cannot be empty"
+        //                 }
+        //                 errorCreate.value = "Price cannot be empty."
+        //             }
+        //             errorCreate.value = "Introduction cannot be empty."
+        //         }
+        //         errorCreate.value = "Objective cannot be empty."
+        //     }
+        //     errorCreate.value = "Product name cannot be empty."
+        // }
+    }
+
 
     const imageUpload = async (evt) => {
         let arrayImg = [];
@@ -39,6 +110,7 @@
         const content = dayContent.value.trim()
         if(title !== "" && content !== ""){
             const setWarp = {
+                day: isDay.value,
                 title: title,
                 content: content
             }
@@ -50,10 +122,55 @@
     }
 
     const btnRemoveContentDay = async () => {
-            isDay.value -= 1 
-            contentDay.value.pop()
+        isDay.value -= 1 
+        contentDay.value.pop()
+    }
+
+    const btnAddingPrice = async () => {
+        const setPerson = isPerson.value;
+        const setPrice = isPrice.value.trim();
+        if(setPerson !== "" && setPrice !== ""){
+            const warpPayload =  {
+            person: setPerson,
+            price: setPrice,
+            }
+            pricePerPersion.value.push(warpPayload);
+        }
+
+        isPerson.value = "";
+        isPrice.value = "";
         
     }
+
+    const btnRemovePrice = async () => {
+        pricePerPersion.value.pop()
+    }
+
+
+    const btnAddingInclude = async () => {
+        const setInclude = includeDesc.value.trim();
+        if(setInclude !== ""){
+            arrayInclude.value.push(setInclude)
+        }
+        includeDesc.value = ""
+    }
+
+    const btnRemoveInclude = async () => {
+        arrayInclude.value.pop()
+    }
+
+    const btnAddingExclusive = async () => {
+        const setExclusive = ExclusiveDesc.value.trim();
+        if(setExclusive !== ""){
+            arrayExclusive.value.push(setExclusive)
+        }
+        ExclusiveDesc.value = ""
+    }
+
+    const btnRemoveExclusive = async () => {
+        arrayExclusive.value.pop();
+    }
+
 </script>
 
 <template>
@@ -63,15 +180,15 @@
                 <div>
                     Product
                 </div>
-                <div class="mr-10">
+                <!-- <div class="mr-10">
                     <button>Product list</button>
-                </div>
+                </div> -->
             </div>
             <div class="border-b-[1px] mt-3"></div>
             <div class="set-desc" >
                 <div >
                     <div>
-                        <div class="flex mt-5" >
+                        <div class="mt-5" >
                             <img class="set-img ml-2 mr-2" v-for="(img, idx) in arrayImgUrl" :key="idx" :src="img" width="250" height="250"/>
                         </div>
                         <div class="mt-5">
@@ -79,14 +196,24 @@
                         </div>
                     </div>
                     <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
+                    <div>
+                        <div class="pro-title">
+                            <div>Product Name</div>
+                            <input  v-model="productTitle" class="border-[1px] border-zinc-600 mr-5 w-[62%] rounded-md"/>
+                        </div>
+                    </div>
+
                     <div class="w-[550px] mt-10 ">
                         <div>
                             <div>Objective</div>
                             <div>
-                                <div v-for="(el, idx) in arrayObj" :key="idx">{{ el }}</div>
-                                <input class="border-[1px] border-zinc-600 mr-5 w-[80%]" v-model="isObj"/>
-                                <button class="btn-obj w-[30px] h-[30px] rounded-full font-bold" @click="addingBtn">+</button>
-                                <button class="btn-obj ml-3 mr-3 w-[30px] h-[30px] rounded-full font-bold" @click="removeBtn">-</button>
+                                <div class="flex" v-for="(el, idx) in arrayObj" :key="idx">
+                                    <div class="mr-3">{{idx + 1}}.</div>
+                                    <div>{{el}}</div>
+                                </div>
+                                <input class="border-[1px] border-zinc-600 mr-5 w-[80%] rounded-md" v-model="isObj"/>
+                                <button class="btn-obj ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-blue-400 rounded-full text-white" @click="addingBtn">+</button>
+                                <button class="btn-obj ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-red-400 rounded-full text-white" @click="removeBtn">-</button>
                             </div>
                         </div>
                     </div>
@@ -95,10 +222,74 @@
                         <div>
                             <div>Introduction</div>
                             <div>
-                                <textarea class="border-[1px] w-[100%] h-[300px] border-zinc-600"></textarea>
+                                <textarea v-model="isIntroduction" class="border-[1px] w-[100%] h-[300px] border-zinc-600"></textarea>
                             </div>
                         </div>
                     </div>
+
+                    <div class="mt-10">
+                        <div class="title-price">Price</div>
+                        <div class="flex mt-4" v-for="(el, idx) in pricePerPersion" :key="idx">
+                            <div>{{idx + 1}} .</div>
+                            <div>{{el.person}}</div>
+                            <div>{{el.price}}</div>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <label>Person</label>
+                                <input v-model="isPerson" class="set-input w-[50px] border-[1px] border-neutral-400 rounded-md ml-3 mr-3" type="number"/>
+                            </div>
+                            <div>
+                                <label>Price</label>
+                                <input v-model="isPrice" class="set-input w-[200px] border-[1px] border-neutral-400 rounded-md ml-3 mr-3"/>
+                            </div>
+                            <div class="adding">
+                                <button @click="btnAddingPrice" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-blue-400 rounded-full text-white">+</button>
+                                <button @click="btnRemovePrice" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-red-400 rounded-full text-white">-</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="c-include mt-10 ">
+                        <div class="title-include">
+                            List include
+                        </div>
+                        <div class="include-desc flex" v-for="(el, idx) in arrayInclude" :key="idx">
+                            <div class="mr-3">{{ idx + 1 }}.</div>
+                            <div> {{ el }} </div>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <label>Include</label>
+                                <input v-model="includeDesc" class="set-input w-[200px] border-[1px] border-neutral-400 rounded-md ml-3 mr-3"/>
+                            </div>   
+                            <div>
+                                <button @click="btnAddingInclude" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-blue-400 rounded-full text-white">+</button>
+                                <button @click="btnRemoveInclude" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-red-400 rounded-full text-white">-</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="c-Exclusive mt-10 ">
+                        <div class="title-Exclusive">
+                            List Exclusive
+                        </div>
+                        <div class="include-desc flex" v-for="(el, idx) in arrayExclusive" :key="idx">
+                            <div class="mr-3">{{ idx + 1 }}.</div>
+                            <div> {{ el }} </div>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <label>Exclusive</label>
+                                <input v-model="ExclusiveDesc" class="set-input w-[200px] border-[1px] border-neutral-400 rounded-md ml-3 mr-3"/>
+                            </div>   
+                            <div>
+                                <button @click="btnAddingExclusive" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-blue-400 rounded-full text-white">+</button>
+                                <button @click="btnRemoveExclusive" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-red-400 rounded-full text-white">-</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
                     <div class="w-[550px] mt-10 pb-10">
                         <div>
@@ -113,24 +304,44 @@
                                     <textarea class="border-[1px]  w-[100%] h-[300px] border-zinc-600" v-model="dayContent"></textarea>
                                 </div>
                             </div>
-                            <div class="flex justify-around mt-10">
-                                <button @click="btnAddingContentDay" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Create</button>
-                                <button @click="btnRemoveContentDay" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-red-600 text-white font-bold">Remove</button>
+                            <div class="flex justify-end mt-10">
+           
+                                <button @click="btnAddingContentDay" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-blue-400 rounded-full text-white">+</button>
+                                <button @click="btnRemoveContentDay" class="ml-2 mr-2 w-[25px]  h-[25px] font-bold bg-red-400 rounded-full text-white">-</button>
                             </div>
                         </div>
+                        <div>
+                            <div class="his-content ml-4" v-for="(el, idx) in contentDay" :key="idx">
+                                <div class="is-day mb-5">Day {{ idx + 1 }}</div>
+                                <div class="title-el font-bold mb-3">{{el.title}}</div>
+                                <div class="desc-el">{{el.content}}</div>
+                                <div class="border-b-[1px] border-zinc-400 mt-3 mb-3 w-[80%] m-auto"></div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+
+                    <div class="border-b-[1px] border-zinc-400 mt-10 mb-3 w-[100%]"></div>
+                    <div class="flex justify-center text-red-700 font-bold" v-if="errorCreate != ''">{{ errorCreate }}</div>
+                    <div class="mt-10 mb-10 flex justify-around">
+                        
+                        <button @click="btnCreateArrayOfContent" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Create</button>
+                        <!-- <button @click="btnRemoveContentDay" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-red-600 text-white font-bold">Remove</button> -->
                     </div>
                 </div>
                 <div class="c-result border-l-[1px] border-zinc-300">
                     <div class="font-bold mb-4 ml-4">
-                        <div>Content</div>
+                        <div>Preview Content</div>
                         <div class="border-b-[1px] border-zinc-400 mt-3 mb-3 w-[50%]"></div>
                     </div>
-                    <div class="his-content ml-4" v-for="(el, idx) in contentDay" :key="idx">
-                        <div class="is-day mb-5">Day {{ idx + 1 }}</div>
-                        <div class="title-el font-bold mb-3">{{el.title}}</div>
-                        <div class="desc-el">{{el.content}}</div>
-                        <div class="border-b-[1px] border-zinc-400 mt-3 mb-3 w-[80%] m-auto"></div>
+                    <div v-if="arrayOfContent.length !== 0">
+                        <div>
+                            <ContentReview v-bind:arrayPayload="arrayOfContent" />
+                        </div>
                     </div>
+                    
+
                 </div>
             </div>
             
@@ -176,5 +387,6 @@
 .btn-pro-content:active{
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
+
 
 </style>
