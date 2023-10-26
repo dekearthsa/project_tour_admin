@@ -1,9 +1,13 @@
 
 <script setup>
+    import {ref} from "vue";
     import 'vue3-carousel/dist/carousel.css'
+    import Content from "./Content.vue";
     import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
-    const isProps = defineProps(['arrayPayload'])
+
+    const isProps = defineProps(['arrayPayload']);
+ 
     // const isShow = ref(false);
 
     // const haddleShow = () => {
@@ -31,18 +35,25 @@
                 <pagination />
             </template>
         </carousel>
+        <div class="c-obj mb-5" >
+            <div class="font-bold">Objective</div>
+            <div v-for="(el, idx) in item.arrayObj" :key="idx">
+                {{ el }} 
+            </div>
+        </div>
         <div class="c-content mb-5">
             <div class="font-bold mb-4">Introduction</div>
             <div>{{ item.introduction }}</div>
-            
         </div>
 
         <div class="c-content  mt-10 mb-3">
             <div class="font-bold mb-5">Content</div>
             <div class="mb-5" v-for="(el, idx) in item.arrayContent" :key="idx">
-                <div class="c-day-name-p ml-4 font-bold mb-5 rounded hover:bg-gray-200">Day {{el.day}}: {{el.title}}</div>
+                <Content :contentProps="el" :isIdx="idx" />
+                <!-- <div class="c-day-name-p ml-4 font-bold mb-5 rounded hover:bg-gray-200">Day {{el.day}}: {{el.title}}</div>
                 <div class="c-desc ml-4">{{ el.content }}</div>
-                <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
+                <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div> -->
+
             </div>
         </div>
         
@@ -84,5 +95,12 @@
 </template>
 
 <style scoped>
+.cssShow{
+    margin-bottom: 1.25rem;
+}
 
+.cssHide{
+    display: none;
+    margin-bottom: 1.25rem;
+}
 </style>

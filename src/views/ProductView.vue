@@ -27,6 +27,8 @@
     const arrayOfContent = ref([]);
     const errorCreate = ref("");
 
+
+
     const btnCreateArrayOfContent = async () => {
         const setIntro = isIntroduction.value.trim();
         const setTitle = productTitle.value.trim();
@@ -35,6 +37,7 @@
 
         const payload = {
             productTitle: setTitle,
+            arrayObj: arrayObj.value,
             introduction: setIntro,
             arrayimg: arrayImgUrl.value,
             arrayPrice: pricePerPersion.value,
@@ -44,7 +47,6 @@
         }
         arrayOfContent.value.push(payload)
         console.log(arrayOfContent.value)
-
 
         // if(setTitle === ""){
         //     if(arrayObj.value.length === 0 ){
@@ -326,7 +328,7 @@
                     <div class="flex justify-center text-red-700 font-bold" v-if="errorCreate != ''">{{ errorCreate }}</div>
                     <div class="mt-10 mb-10 flex justify-around">
                         
-                        <button @click="btnCreateArrayOfContent" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Create</button>
+                        <button @click="btnCreateArrayOfContent" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Review</button>
                         <!-- <button @click="btnRemoveContentDay" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-red-600 text-white font-bold">Remove</button> -->
                     </div>
                 </div>
@@ -387,6 +389,8 @@
 .btn-pro-content:active{
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
+
+
 
 
 </style>
