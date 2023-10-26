@@ -13,6 +13,18 @@
                 <CardProduct/>
                 <CardProduct/>
                 <CardProduct/>
+
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
+                <CardProduct/>
             </div>
         </div>
     </div>

@@ -32,8 +32,6 @@
     const btnCreateArrayOfContent = async () => {
         const setIntro = isIntroduction.value.trim();
         const setTitle = productTitle.value.trim();
-        // console.log(productTitle.value)
-        // console.log(isIntroduction.value)
 
         const payload = {
             productTitle: setTitle,
@@ -47,39 +45,6 @@
         }
         arrayOfContent.value.push(payload)
         console.log(arrayOfContent.value)
-
-        // if(setTitle === ""){
-        //     if(arrayObj.value.length === 0 ){
-        //         if(setIntro === ""){
-        //             if(pricePerPersion.value.length === 0){
-        //                 if(arrayInclude.value.length === 0){
-        //                     if(arrayExclusive.value.length === 0){
-        //                         if(contentDay.value.length === 0){
-        //                             errorCreate.value = "Content day cannot be empty"
-        //                         }else{
-        //                             const payload = {
-        //                                 productTitle: setTitle,
-        //                                 introduction: setIntro,
-        //                                 arrayimg: arrayImgUrl,
-        //                                 arrayPrice: pricePerPersion,
-        //                                 arrayInclude: arrayInclude,
-        //                                 arrayExclusive: arrayExclusive,
-        //                                 arrayContent: contentDay,
-        //                             }
-        //                             arrayOfContent.value.push(payload)
-        //                         }
-        //                         errorCreate.value = "Exclusive cannot be empty"
-        //                     }
-        //                     errorCreate.value = "Include benefit cannot be empty"
-        //                 }
-        //                 errorCreate.value = "Price cannot be empty."
-        //             }
-        //             errorCreate.value = "Introduction cannot be empty."
-        //         }
-        //         errorCreate.value = "Objective cannot be empty."
-        //     }
-        //     errorCreate.value = "Product name cannot be empty."
-        // }
     }
 
 
