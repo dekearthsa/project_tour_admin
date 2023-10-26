@@ -7,16 +7,7 @@
 
 
     const isProps = defineProps(['arrayPayload']);
- 
-    // const isShow = ref(false);
 
-    // const haddleShow = () => {
-    //     if(false){
-    //         return true
-    //     }else{
-    //         return false
-    //     }
-    // }
 
 </script>
 
@@ -42,13 +33,13 @@
             </div>
         </div>
         <div class="c-content mb-5">
-            <div class="font-bold mb-4">Introduction</div>
+            <div class="font-bold">Introduction</div>
             <div>{{ item.introduction }}</div>
         </div>
 
         <div class="c-content  mt-10 mb-3">
-            <div class="font-bold mb-5">Content</div>
-            <div class="mb-5" v-for="(el, idx) in item.arrayContent" :key="idx">
+            <div class="font-bold ">Content</div>
+            <div class="mb-3" v-for="(el, idx) in item.arrayContent" :key="idx">
                 <Content :contentProps="el" :isIdx="idx" />
                 <!-- <div class="c-day-name-p ml-4 font-bold mb-5 rounded hover:bg-gray-200">Day {{el.day}}: {{el.title}}</div>
                 <div class="c-desc ml-4">{{ el.content }}</div>
@@ -59,7 +50,7 @@
         
         <div class="c-price">
             <div class="font-bold mt-10 mb-3">Prices</div>
-            <div class="flex hover:bg-gray-200 w-[30%] rounded-md" v-for="(el, idx) in item.arrayPrice" :key="idx">
+            <div class="flex hover:bg-gray-200  rounded-md" v-for="(el, idx) in item.arrayPrice" :key="idx">
                 <div class="c-day ml-4">Person: {{ el.person }}</div>
                 <div class="c-desc ml-4">Price: {{ el.price }}</div>
             </div>
@@ -89,6 +80,10 @@
                 <!-- <div class="c-day">{{el.day}}: {{el.title}}</div> -->
                 <div class="c-desc ml-4">{{ el }}</div>
             </div>
+        </div>
+        <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
+        <div>
+            <button @click="haddleCreate" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Create</button>
         </div>
         <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
     </div>  

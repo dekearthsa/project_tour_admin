@@ -182,9 +182,6 @@
                 <div>
                     Product
                 </div>
-                <!-- <div class="mr-10">
-                    <button>Product list</button>
-                </div> -->
             </div>
             <div class="border-b-[1px] mt-3"></div>
             <div class="set-desc" >
@@ -198,6 +195,22 @@
                         </div>
                     </div>
                     <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
+
+                    <div class="flex mb-5 mt-5">
+                        <label class="mr-5">Region</label>
+                        <div>
+                            <select class="border-[1px] border-zinc-300 rounded-md">
+                                <option value=""></option>
+                                <option value="ภาคเหนือ">ภาคเหนือ</option>
+                                <option value="ภาคตะวันตก">ภาคตะวันตก</option>
+                                <option value="ภาคกลาง">ภาคกลาง</option>
+                                <option value="ภาคตะวันออกเฉียงเหนือ">ภาคตะวันออกเฉียงเหนือ</option>
+                                <option value="ภาคตะวันออก">ภาคตะวันออก</option>
+                                <option value="ภาคใต้">ภาคใต้</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div>
                         <div class="pro-title">
                             <div>Product Name</div>
