@@ -97,14 +97,14 @@
         }
         try{
             const resultOut = await axios.post("https://backend-product-eab54o3b3q-as.a.run.app/api/sendfile",formData,headerConf)
-            console.log("resultOut => ",resultOut.data)
-            // if(resultOut.data.status === "ok"){
-            //     console.log(resultOut)
-            // }else{
-
-            // }
+            // console.log("resultOut => ",resultOut.data)
+            if(resultOut.data.status === "ok"){
+                alert("Create product success.")
+            }else{
+                alert(resultOut.data.status)
+            }
         }catch(err){
-
+            alert(err)
         }
     }
 
