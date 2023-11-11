@@ -8,6 +8,22 @@
 
     const isProps = defineProps(['arrayPayload']);
 
+    const haddleCreate = async () => {
+        console.log(isProps.arrayPayload.arrayImgFile)
+        // const formData = new FormData();
+        // formData.append("images", isProps.arrayPayload.arrayImgFile.target.files)
+        // formData.append("region", isProps.arrayPayload.isRegion)
+        // formData.append("productName",isProps.arrayPayload.IsProductName)
+        // formData.append("objective", isProps.arrayPayload.arrayObj)
+        // formData.append("introduction",isProps.arrayPayload.introduction)
+        // formData.append("include",isProps.arrayPayload.arrayInclude)
+        // formData.append("exclusive",isProps.arrayPayload.arrayExclusive)
+        // formData.append("price",isProps.arrayPayload.arrayPrice)
+        // formData.append("content",isProps.arrayPayload.arrayContent)
+
+        // console.log(formData)
+    }
+
 
 </script>
 
@@ -15,7 +31,7 @@
 <template>
     <div class="ml-5 mb-2" v-for="(item, index) in isProps.arrayPayload" :key="index">
         <div class="c-title mb-3 font-bold">
-            {{ item.productTitle }}
+            {{ item.IsProductName }}
         </div>
         <carousel class="mb-10"  :items-to-show="1">
             <slide v-for="slide in item.arrayimg" :key="slide">
@@ -82,10 +98,10 @@
             </div>
         </div>
         <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
-        <div>
+        <!-- <div>
             <button @click="haddleCreate" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Create</button>
         </div>
-        <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div>
+        <div class="border-b-[1px] border-zinc-400 mt-3 mb-3"></div> -->
     </div>  
 </template>
 

@@ -17,6 +17,7 @@
         }
         arrayImgUrl.value = arrayImg
     }   
+
 </script>
 
 

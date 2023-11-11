@@ -1,11 +1,16 @@
 <script setup>
     import {ref} from "vue";
     import ContentReview from "../components/imageSilder/ContentReview.vue"
+    import axios from "axios"
 
-    const productTitle = ref("");
+    const isProductName = ref("");
 
     const arrayImage = ref();
     const arrayImgUrl = ref();
+
+    const isRegion = ref();
+    // const isProductName = ref();
+
     const arrayObj = ref([]);
     const isIntroduction =ref("");
     const isObj = ref();
@@ -31,26 +36,83 @@
 
     const btnCreateArrayOfContent = async () => {
         const setIntro = isIntroduction.value.trim();
-        const setTitle = productTitle.value.trim();
+        // const setTitle = isProductName.value.trim();
 
         const payload = {
-            productTitle: setTitle,
+            isRegion: isRegion.value,
+            isProductName: isProductName.value,
             arrayObj: arrayObj.value,
             introduction: setIntro,
+            arrayImgFile: arrayImage.value.target.files,
             arrayimg: arrayImgUrl.value,
             arrayPrice: pricePerPersion.value,
             arrayInclude: arrayInclude.value,
             arrayExclusive: arrayExclusive.value,
             arrayContent: contentDay.value,
         }
+        arrayOfContent.value.shift()
         arrayOfContent.value.push(payload)
-        console.log(arrayOfContent.value)
+        // console.log(arrayOfContent.value)
+        
+    }
+
+    const btnCreteProduct = async () => {
+        const formData = new FormData();
+        const setIntro = isIntroduction.value.trim();
+
+        let isTitles = [];
+        let isContents = [];
+        let isPersons = [];
+        let isPrices = [];
+
+        pricePerPersion.value.forEach((element) => {
+            isPersons.push(element.person);
+            isPrices.push(element.price)
+        })
+
+        contentDay.value.forEach((element) => {
+            isTitles.push(element.title)
+            isContents.push(element.content)
+        });
+        // console.log("arrayImage.value.target.files => ",arrayImage.value.target.files)
+        for(let i = 0; i < arrayImage.value.target.files.length; i++){
+            formData.append("images", arrayImage.value.target.files[i]);
+        }
+        
+        formData.append("region", isRegion.value);
+        formData.append("productName",isProductName.value);
+        formData.append("objective", arrayObj.value);
+        formData.append("introduction",setIntro);
+        formData.append("include",arrayInclude.value);
+        formData.append("exclusive",arrayExclusive.value);
+        formData.append("person",isPersons);
+        formData.append("price",isPrices);
+        formData.append("title",isTitles);
+        formData.append("content",isContents);
+
+        const headerConf = {
+            headers: {
+                'Content-Type': `multipart/form-data`
+            }
+        }
+        try{
+            const resultOut = await axios.post("https://backend-product-eab54o3b3q-as.a.run.app/api/sendfile",formData,headerConf)
+            console.log("resultOut => ",resultOut.data)
+            // if(resultOut.data.status === "ok"){
+            //     console.log(resultOut)
+            // }else{
+
+            // }
+        }catch(err){
+
+        }
     }
 
 
     const imageUpload = async (evt) => {
         let arrayImg = [];
-        arrayImage.value = evt.target.files
+        // arrayImage.value = evt.target.files
+        arrayImage.value = evt
         arrayImgUrl.value  = arrayImg
         for(let i = 0; i <  evt.target.files.length; i++){
             const createUrl = URL.createObjectURL(evt.target.files[i])
@@ -164,7 +226,7 @@
                     <div class="flex mb-5 mt-5">
                         <label class="mr-5">Region</label>
                         <div>
-                            <select class="border-[1px] border-zinc-300 rounded-md">
+                            <select v-model="isRegion" class="border-[1px] border-zinc-300 rounded-md">
                                 <option value=""></option>
                                 <option value="ภาคเหนือ">ภาคเหนือ</option>
                                 <option value="ภาคตะวันตก">ภาคตะวันตก</option>
@@ -179,7 +241,7 @@
                     <div>
                         <div class="pro-title">
                             <div>Product Name</div>
-                            <input  v-model="productTitle" class="border-[1px] border-zinc-600 mr-5 w-[62%] rounded-md"/>
+                            <input  v-model="isProductName" class="border-[1px] border-zinc-600 mr-5 w-[62%] rounded-md"/>
                         </div>
                     </div>
 
@@ -307,6 +369,7 @@
                     <div class="mt-10 mb-10 flex justify-around">
                         
                         <button @click="btnCreateArrayOfContent" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Review</button>
+                        <button @click="btnCreteProduct" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-blue-500 text-white font-bold">Create</button>
                         <!-- <button @click="btnRemoveContentDay" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-red-600 text-white font-bold">Remove</button> -->
                     </div>
                 </div>
@@ -317,7 +380,7 @@
                     </div>
                     <div v-if="arrayOfContent.length !== 0">
                         <div>
-                            <ContentReview v-bind:arrayPayload="arrayOfContent" />
+                            <ContentReview v-bind:arrayPayload="arrayOfContent"  />
                         </div>
                     </div>
                     
