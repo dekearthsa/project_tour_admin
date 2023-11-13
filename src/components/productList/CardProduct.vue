@@ -16,8 +16,10 @@ console.log("isData => ",isData.isData)
             <div class="title-content font-bold ml-2">
                 {{ isData.isData.Content[0].Title }}
             </div>
-            <div class="card-intro mt-1 mb-3 ml-2 mr-2">
-                {{ isData.isData.Content[0].Content }}
+            <div class=" mt-1 mb-3 ml-2 mr-2">
+                <div class="card-intro">
+                    {{ isData.isData.Content[0].Content }}
+                </div>
             </div>
             <div>
                 <div class="font-bold ml-2">Include</div>
@@ -58,8 +60,13 @@ console.log("isData => ",isData.isData)
 
 <style scoped>
 .set-card{
+    display: block;
+    word-break: break-word;
+    white-space: pre-wrap;
+    -moz-white-space: pre-wrap; 
     overflow-y: scroll;
 }
+
 
 
 </style>
