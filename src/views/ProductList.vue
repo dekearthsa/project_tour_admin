@@ -47,11 +47,12 @@
             <div class="c-loading m-auto flex justify-center" v-if="arrayOfProduct === ''">
                 <div class="loader"></div>
             </div>
-            
-            <div class="content-list pb-10" v-for="(el, idx) in arrayOfProduct" :key="idx">
-                
-                <CardProduct :isData="el" />
+            <div class="content-list pb-10">
+                <div  v-for="(el, idx) in arrayOfProduct" :key="idx">
+                    <CardProduct :isData="el" />
+                </div>
             </div>
+            
         </div>
     </div>
 </template>
@@ -64,7 +65,7 @@
 }
 .content-list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .c-loading{

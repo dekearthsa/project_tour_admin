@@ -7,7 +7,7 @@ console.log("isData => ",isData.isData)
 </script>
 
 <template>
-    <div class="set-card m-auto mt-10 border-[1px] border-neutral-400 w-[90%] h-[450px] rounded-md">
+    <div class="set-card ml-3 mt-10 border-[1px] border-neutral-400 w-[300px] h-[450px] rounded-md">
         <div class="title text-center font-bold">{{isData.isData.ProductName}}</div>
         <div class="card-desc">
             <div class="card-img">
@@ -60,4 +60,6 @@ console.log("isData => ",isData.isData)
 .set-card{
     overflow-y: scroll;
 }
+
+
 </style>
