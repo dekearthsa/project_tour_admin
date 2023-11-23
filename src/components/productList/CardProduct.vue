@@ -1,7 +1,7 @@
 <script setup>
-import {ref, onMounted }from "vue";
+// import {ref, onMounted }from "vue";
 const isData = defineProps(['isData']);
-console.log("isData => ",isData.isData)
+// console.log("isData => ",isData.isData)
 // console.log(isData)f
 // <img src={`data:image/png;base64,${imgFile}`} width="150" height="150"/>
 </script>
