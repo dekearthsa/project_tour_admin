@@ -87,25 +87,7 @@
         }
     }
 
-    const haddleDeleteData = async (keyTitle) => {
-        const payload = {
-            Title: keyTitle
-        }
-        try{
-            const status = await axios.post("https://backend-content-eab54o3b3q-as.a.run.app/api/delete/content", payload);
-            if(status.data.status === "ok"){
-                alert(`${keyTitle} is have deleted.`)
-                window.location.reload(true)
-            }else{
-                alert(status.data.status)
-            }
-        }catch(err){
-            console.log(err)
-            alert(err)
-        }
 
-
-    }
 
     onMounted(() => {
         haddleFetchContent();

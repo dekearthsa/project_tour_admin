@@ -2,8 +2,22 @@
     import {ref, onMounted }from "vue";
     import axios from "axios";
     import CardProduct from '../components/productList/CardProduct.vue';
+    import ComponentEditProduct from "../components/productEdit/ComponentEditProduct.vue";
+    import { useStore } from 'vuex'
 
+    const store = useStore()
     const arrayOfProduct = ref("");
+
+    const haddleClosePopUp = () => {
+        store.state.isProductPopup = false;
+        store.state.isProductName = ""
+        store.state.isProductArrayBase64 = []
+        store.state.isProductContent = []
+        store.state.isProductInclude = []
+        store.state.isProductExclusive = []
+        store.state.isProductPrice = []
+    }
+
 
     onMounted( async () => {
         try{
@@ -18,6 +32,20 @@
 
 
 <template>
+    
+
+
+    <div class="set-popup-content" v-if="store.state.isProductPopup === true">
+        <div class="set-nav-content-pop bg-zinc-500">
+            <div class="flex justify-end mr-3 font-bold text-white">
+                <button @click="haddleClosePopUp">x</button>
+            </div>
+        </div>
+        <div class="pop-detail"> 
+            <ComponentEditProduct/>
+        </div>
+    </div>
+    
     <div class="product-list">
         <div class="c-title ml-5 mr-5 mt-5 font-bold">Product list</div>
         <div class="ml-5">
@@ -59,6 +87,28 @@
 
 
 <style scoped>
+.set-popup-content{
+    position: fixed;
+    background: white;
+    left: 20%;
+    top: 10%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 70vh;
+    width: 70%;    
+    display: block;
+    word-break: break-word;
+    white-space: pre-wrap;
+    -moz-white-space: pre-wrap; 
+    overflow-y: scroll;
+}
+
+.set-nav-content-pop{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom: 1px solid black;
+}
+
 .product-list{
     overflow-y: scroll;
     height: 100vh;

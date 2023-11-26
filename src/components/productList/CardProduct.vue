@@ -1,9 +1,46 @@
 <script setup>
 // import {ref, onMounted }from "vue";
+import axios from "axios";
+import { useStore } from 'vuex'
+
+const store = useStore()
 const isData = defineProps(['isData']);
+const setFirstTitle = isData.isData.Content[0].Title
+const setFirstContent = isData.isData.Content[0].Content
 // console.log("isData => ",isData.isData)
 // console.log(isData)f
 // <img src={`data:image/png;base64,${imgFile}`} width="150" height="150"/>
+
+    const haddleOpenUpEdit = (productName, arrayBase64, content, include, exclusive, price, obj, intro) => {
+        store.state.isProductPopup = true;
+        store.state.isProductName = productName
+        store.state.isProductArrayBase64 = arrayBase64
+        store.state.isProductContent = content
+        store.state.isProductInclude = include
+        store.state.isProductExclusive = exclusive
+        store.state.isProductPrice = price
+        store.state.isProductIntro = intro
+        store.state.isProductObj = obj
+    }
+
+    const haddleDeleteData = async (keyTitle) => {
+        const payload = {
+            ProductName: keyTitle
+        }
+        try{
+            const status = await axios.post("https://backend-product-eab54o3b3q-as.a.run.app/api/delete/product", payload);
+            if(status.data.status === "ok"){
+                alert(`Product name ${keyTitle} is have deleted.`)
+                window.location.reload(true)
+            }else{
+                alert(status.data.status)
+            }
+        }catch(err){
+            console.log(err)
+            alert(err)
+        }
+    }
+
 </script>
 
 <template>
@@ -14,11 +51,11 @@ const isData = defineProps(['isData']);
                 <img :src="'data:image/png;base64,'+isData.isData.ArrayBase64[0]" class="m-auto text-center" width="250" height="200"/>
             </div>
             <div class="title-content font-bold ml-2">
-                {{ isData.isData.Content[0].Title }}
+                {{ setFirstTitle }}
             </div>
             <div class=" mt-1 mb-3 ml-2 mr-2">
                 <div class="card-intro">
-                    {{ isData.isData.Content[0].Content }}
+                    {{ setFirstContent }}
                 </div>
             </div>
             <div>
@@ -47,11 +84,25 @@ const isData = defineProps(['isData']);
             <div class="">
                 <div class="container-c flex justify-around h-[50px] mt-3">
                     <div>
-                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
+                        <button @click="haddleOpenUpEdit(
+                            isData.isData.isProductRegion,
+                            isData.isData.ProductName, 
+                            isData.isData.ArrayBase64, 
+                            isData.isData.Content,
+                            isData.isData.Include,
+                            isData.isData.Exclusive,
+                            isData.isData.Price,
+                            isData.isData.Objective,
+                            isData.isData.Introduction,
+                            )" class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
                     </div>
                     <div>
-                        <button class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
+                        <button @click="haddleDeleteData(isData.isData.ProductName)" class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
                     </div>
+                    
+                </div>
+                <div>
+                    {{ isData.isData }}
                 </div>
             </div>
         </div>

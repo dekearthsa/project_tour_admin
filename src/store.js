@@ -5,5 +5,17 @@ export default createStore({
         popContentTitle: "",
         popContentDetail: "",
         popContentBase64: [],
+        isProductPopup: false,
+
+        isProductRegion: "",
+        isProductName: "",
+        isProductArrayBase64: [],
+        isProductContent: [],
+        isProductInclude: [],
+        isProductExclusive: [],
+        isProductPrice: [],
+        isProductIntro: "",
+        isProductObj: []
+
     }
 })
