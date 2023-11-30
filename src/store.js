@@ -15,7 +15,8 @@ export default createStore({
         isProductExclusive: [],
         isProductPrice: [],
         isProductIntro: "",
-        isProductObj: []
+        isProductObj: [],
+        isProductRegion: ""
 
     }
 })

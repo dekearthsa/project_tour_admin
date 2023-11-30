@@ -10,18 +10,18 @@
 
     const haddleCreate = async () => {
         console.log(isProps.arrayPayload.arrayImgFile)
-        // const formData = new FormData();
-        // formData.append("images", isProps.arrayPayload.arrayImgFile.target.files)
-        // formData.append("region", isProps.arrayPayload.isRegion)
-        // formData.append("productName",isProps.arrayPayload.IsProductName)
-        // formData.append("objective", isProps.arrayPayload.arrayObj)
-        // formData.append("introduction",isProps.arrayPayload.introduction)
-        // formData.append("include",isProps.arrayPayload.arrayInclude)
-        // formData.append("exclusive",isProps.arrayPayload.arrayExclusive)
-        // formData.append("price",isProps.arrayPayload.arrayPrice)
-        // formData.append("content",isProps.arrayPayload.arrayContent)
+        const formData = new FormData();
+        formData.append("images", isProps.arrayPayload.arrayImgFile.target.files)
+        formData.append("region", isProps.arrayPayload.isRegion)
+        formData.append("productName",isProps.arrayPayload.IsProductName)
+        formData.append("objective", isProps.arrayPayload.arrayObj)
+        formData.append("introduction",isProps.arrayPayload.introduction)
+        formData.append("include",isProps.arrayPayload.arrayInclude)
+        formData.append("exclusive",isProps.arrayPayload.arrayExclusive)
+        formData.append("price",isProps.arrayPayload.arrayPrice)
+        formData.append("content",isProps.arrayPayload.arrayContent)
 
-        // console.log(formData)
+        console.log(formData)
     }
 
 

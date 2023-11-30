@@ -11,7 +11,7 @@ const setFirstContent = isData.isData.Content[0].Content
 // console.log(isData)f
 // <img src={`data:image/png;base64,${imgFile}`} width="150" height="150"/>
 
-    const haddleOpenUpEdit = (productName, arrayBase64, content, include, exclusive, price, obj, intro) => {
+    const haddleOpenUpEdit = (productName, arrayBase64, content, include, exclusive, price, obj, intro, region) => {
         store.state.isProductPopup = true;
         store.state.isProductName = productName
         store.state.isProductArrayBase64 = arrayBase64
@@ -21,6 +21,9 @@ const setFirstContent = isData.isData.Content[0].Content
         store.state.isProductPrice = price
         store.state.isProductIntro = intro
         store.state.isProductObj = obj
+        store.state.isProductRegion = region
+
+        console.log(region)
     }
 
     const haddleDeleteData = async (keyTitle) => {
@@ -72,20 +75,20 @@ const setFirstContent = isData.isData.Content[0].Content
             </div>
             <div>
                 <div class="font-bold ml-2">Price</div>
-                <div v-for="(el, idx) in isData.isData.Price" :key="idx">
+                <div class="" v-for="(el, idx) in isData.isData.Price" :key="idx">
                     <div class="flex">
                         <div class="ml-4 font-semibold">Person</div>
                         <div class="ml-1">{{el.Person}}</div>
                         <div class="ml-4 font-semibold">Price</div>
                         <div class="ml-1">{{el.Price}}</div>
                     </div>
+
                 </div>
             </div>
             <div class="">
                 <div class="container-c flex justify-around h-[50px] mt-3">
                     <div>
                         <button @click="haddleOpenUpEdit(
-                            isData.isData.isProductRegion,
                             isData.isData.ProductName, 
                             isData.isData.ArrayBase64, 
                             isData.isData.Content,
@@ -94,15 +97,13 @@ const setFirstContent = isData.isData.Content[0].Content
                             isData.isData.Price,
                             isData.isData.Objective,
                             isData.isData.Introduction,
+                            isData.isData.Region,
                             )" class="btn-crud w-[100px] h-[40px] rounded-md bg-yellow-400">Edit</button>
                     </div>
                     <div>
                         <button @click="haddleDeleteData(isData.isData.ProductName)" class="btn-crud w-[100px] h-[40px] rounded-md bg-red-500">Delete</button>
                     </div>
                     
-                </div>
-                <div>
-                    {{ isData.isData }}
                 </div>
             </div>
         </div>

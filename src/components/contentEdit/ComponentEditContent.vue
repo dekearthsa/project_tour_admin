@@ -29,29 +29,56 @@
     
     const haddleUpdateContent = async () => {
         const formData = new FormData();
-        for(let i = 0; i < arrayImage.value.target.files.length; i++){
-            formData.append("images", arrayImage.value.target.files[i]);
-        }
-        formData.append("title",isTitle.value)
-        formData.append("content", isContent.value)
 
-        const headerConf = {
-            headers: {
-                'Content-Type': `multipart/form-data`
+        if(arrayImgUrl.value.length > 0){
+            for(let i = 0; i < arrayImage.value.target.files.length; i++){
+                formData.append("images", arrayImage.value.target.files[i]);
+            }
+            formData.append("title",isTitle.value)
+            formData.append("content", isContent.value)
+
+            const headerConf = {
+                headers: {
+                    'Content-Type': `multipart/form-data`
+                }
+            }
+            try{
+                // console.log("formData => ",formData)
+                const resultOut = await axios.post("https://backend-content-eab54o3b3q-as.a.run.app/api/update/content",formData,headerConf)
+                if(resultOut.data.status === "ok"){
+                    alert("content update success.")
+                    window.location.reload(true)
+                }else{
+                    alert(resultOut.data.status)
+                }
+            }catch(err){
+                alert(err)
+            }
+        }else{
+
+            formData.append("images", "")
+            formData.append("title",isTitle.value)
+            formData.append("content", isContent.value)
+
+            const headerConf = {
+                headers: {
+                    'Content-Type': `multipart/form-data`
+                }
+            }
+            try{
+                // console.log("formData => ",formData)
+                const resultOut = await axios.post("https://backend-content-eab54o3b3q-as.a.run.app/api/update/content",formData,headerConf)
+                if(resultOut.data.status === "ok"){
+                    alert("content update success.")
+                    window.location.reload(true)
+                }else{
+                    alert(resultOut.data.status)
+                }
+            }catch(err){
+                alert(err)
             }
         }
-        try{
-            // console.log("formData => ",formData)
-            const resultOut = await axios.post("https://backend-content-eab54o3b3q-as.a.run.app/api/update/content",formData,headerConf)
-            if(resultOut.data.status === "ok"){
-                alert("content update success.")
-                window.location.reload(true)
-            }else{
-                alert(resultOut.data.status)
-            }
-        }catch(err){
-            alert(err)
-        }
+        
     }
 
     

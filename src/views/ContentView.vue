@@ -2,7 +2,7 @@
     import axios from "axios";
     import {ref, onMounted} from "vue";
     import { useStore } from 'vuex'
-    import ComponentEditContent from "../components/contentEdit/ComponentEditContent.vue";
+    // import ComponentEditContent from "../components/contentEdit/ComponentEditContent.vue";
 
     const store = useStore();
     
@@ -64,40 +64,40 @@
         }
     }
 
-    const haddleUpdateContent = (title, content, arrayBase64) => {
-        store.state.popContentTitle = title;
-        store.state.popContentDetail = content;
-        store.state.popContentBase64 = arrayBase64;
-        isPopup.value = true;
-    }
-    const haddleClosePopUp = () => {
-        store.state.popContentTitle = "";
-        store.state.popContentDetail = "";
-        store.state.popContentBase64 = [];
-        isPopup.value = false;
-    }
+    // const haddleUpdateContent = (title, content, arrayBase64) => {
+    //     store.state.popContentTitle = title;
+    //     store.state.popContentDetail = content;
+    //     store.state.popContentBase64 = arrayBase64;
+    //     isPopup.value = true;
+    // }
+    // const haddleClosePopUp = () => {
+    //     store.state.popContentTitle = "";
+    //     store.state.popContentDetail = "";
+    //     store.state.popContentBase64 = [];
+    //     isPopup.value = false;
+    // }
 
-    const haddleFetchContent = async () => {
-        try{
-            const result = await axios.get("https://backend-content-eab54o3b3q-as.a.run.app/api/read/content");
-            arrayOfContent.value = result.data.reply
-            // console.log(result.data.reply)
-        }catch(err){
-            console.log("err in haddleFetchContent => ",err);
-        }
-    }
+    // const haddleFetchContent = async () => {
+    //     try{
+    //         const result = await axios.get("https://backend-content-eab54o3b3q-as.a.run.app/api/read/content");
+    //         arrayOfContent.value = result.data.reply
+    //         // console.log(result.data.reply)
+    //     }catch(err){
+    //         console.log("err in haddleFetchContent => ",err);
+    //     }
+    // }
 
 
 
-    onMounted(() => {
-        haddleFetchContent();
-    })
+    // onMounted(() => {
+    //     haddleFetchContent();
+    // })
 
 </script>
 
 
 <template>
-    <div class="set-popup-content" v-if="isPopup === true">
+    <!-- <div class="set-popup-content" v-if="isPopup === true">
         <div class="set-nav-content-pop bg-zinc-500">
             <div class="flex justify-end mr-8 font-bold text-white">
                 <button @click="haddleClosePopUp">x</button>
@@ -106,7 +106,7 @@
         <div class="pop-detail"> 
             <ComponentEditContent/>
         </div>
-    </div>
+    </div> -->
     <div class="set-content">
         <div class="ml-3 mr-3 mt-5"> 
             <div class="title text-[18px] font-bold">Content</div>
@@ -134,13 +134,11 @@
                 </div>
                 <div class="border-b-[1px] mt-3"></div>
                 <div class="">
-                    <div class="title font-bold">
+                    <!-- <div class="title font-bold">
                         Content list
-                    </div>
+                    </div> -->
                     <div >
-                        <div class="content-list pb-4">   
-
-                            <!--card -->
+                        <!-- <div class="content-list pb-4">   
                             <div v-for="(el, idx) in arrayOfContent" :key="idx" class="rounded-md mt-3 c-card ml-3 mr-3  w-[300px] border-[1px] border-neutral-500">
                                 <div class="title-card font-bold ml-3">{{ el.Title }}</div>
                                 <div>
@@ -158,8 +156,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- end card -->
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>  

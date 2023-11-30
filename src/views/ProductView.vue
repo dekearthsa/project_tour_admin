@@ -32,9 +32,12 @@
     const arrayOfContent = ref([]);
     const errorCreate = ref("");
 
+    const isPopup = ref(false)
+
 
 
     const btnCreateArrayOfContent = async () => {
+        isPopup.value = true
         const setIntro = isIntroduction.value.trim();
         // const setTitle = isProductName.value.trim();
 
@@ -54,6 +57,10 @@
         arrayOfContent.value.push(payload)
         // console.log(arrayOfContent.value)
         
+    }
+
+    const haddleClosePopUp = async () => {
+        isPopup.value = false
     }
 
     const btnCreteProduct = async () => {
@@ -81,14 +88,35 @@
         
         formData.append("region", isRegion.value);
         formData.append("productName",isProductName.value);
-        formData.append("objective", arrayObj.value);
         formData.append("introduction",setIntro);
-        formData.append("include",arrayInclude.value);
-        formData.append("exclusive",arrayExclusive.value);
-        formData.append("person",isPersons);
-        formData.append("price",isPrices);
-        formData.append("title",isTitles);
-        formData.append("content",isContents);
+
+        for(let i = 0; i < arrayObj.value.length; i++){
+            formData.append("objective", arrayObj.value[i]);
+        }
+        
+        for(let i = 0; i < arrayInclude.value.length; i++){
+            formData.append("include", arrayInclude.value[i]);
+        }
+
+        for(let i = 0; i < arrayExclusive.value.length; i++){
+            formData.append("exclusive", arrayExclusive.value[i]);
+        }
+
+        for(let i = 0; i < isPersons.length; i++){
+            formData.append("person", isPersons[i]);
+        }
+
+        for(let i = 0; i < isPrices.length; i++){
+            formData.append("price", isPrices[i]);
+        }
+
+        for(let i = 0; i < isTitles.length; i++){
+            formData.append("title", isTitles[i]);
+        }
+
+        for(let i = 0; i < isContents.length; i++){
+            formData.append("content", isContents[i]);
+        }
 
         const headerConf = {
             headers: {
@@ -203,6 +231,24 @@
 </script>
 
 <template>
+    <div class="c-result border-l-[1px] border-zinc-300" v-if="isPopup">
+        <div class="set-nav font-bold">
+            <button @click="haddleClosePopUp">X</button>
+        </div>
+        <div class="font-bold mb-4 ml-4">
+            <div class="mt-10">Preview Content</div>
+            <div class="border-b-[1px] border-zinc-400 mt-3 mb-3 w-[50%]"></div>
+        </div>
+        <div v-if="arrayOfContent.length !== 0">
+            <div>
+                <ContentReview v-bind:arrayPayload="arrayOfContent"  />
+            </div>
+        </div>
+        <div class="text-center">
+            <button @click="btnCreteProduct" class="btn-pro-content w-[100px] h-[40px] mt-5 mb-5 rounded-md bg-blue-500 text-white font-bold">Create</button>
+        </div>
+
+    </div>
     <div class="set-product">
         <div class="ml-3 mr-3 mt-5">
             <div class="title text-[18px] font-bold flex justify-between">
@@ -373,19 +419,7 @@
                         <!-- <button @click="btnRemoveContentDay" class="btn-pro-content w-[100px] h-[40px] rounded-md bg-red-600 text-white font-bold">Remove</button> -->
                     </div>
                 </div>
-                <div class="c-result border-l-[1px] border-zinc-300">
-                    <div class="font-bold mb-4 ml-4">
-                        <div>Preview Content</div>
-                        <div class="border-b-[1px] border-zinc-400 mt-3 mb-3 w-[50%]"></div>
-                    </div>
-                    <div v-if="arrayOfContent.length !== 0">
-                        <div>
-                            <ContentReview v-bind:arrayPayload="arrayOfContent"  />
-                        </div>
-                    </div>
-                    
-
-                </div>
+                
             </div>
             
         </div>
@@ -393,24 +427,33 @@
 </template>
 
 <style scoped> 
-.set-g{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 10px;
+
+.c-result{
+    position: fixed;
+    top: 5%;
+    left: 15%;
+    width: 80%;
+    height: 90vh;
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow-y: scroll;
 }
+
+.set-nav{
+    width: 100%;
+    height: 30px;
+    background: gray;
+    text-align: right;
+    padding-right: 15px;
+    padding-top: 4px;
+    color: white;
+}
+
 .set-product{
     overflow-y: scroll;
     height: 100vh;
 }   
-
-.set-desc{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    
-}
-
- 
-
 .btn-add{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }

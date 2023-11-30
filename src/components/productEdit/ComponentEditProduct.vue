@@ -107,35 +107,106 @@
             isPerson.push(element.Person)
             isPrice.push(element.Price)
         })
-
-        for(let i = 0; i < arrayImage.value.target.files.length; i++){
-            formData.append("images", arrayImage.value.target.files[i]);
-        }
         
+        if(arrayImgUrl.length > 0){
+            // for(let i = 0; i < arrayImage.value.target.files.length; i++){
+            //     formData.append("images", arrayImage.value.target.files[i]);
+            // }
+            
+            formData.append("images","");
+            formData.append("region", setRegion.value);
+            formData.append("productName",store.state.isProductName);
+            formData.append("introduction",setIntro);
 
-        formData.append("region", setRegion.value);
-        formData.append("productName",store.state.isProductName);
-        formData.append("objective", setArrayObj.value);
-        formData.append("introduction",setIntro);
-        formData.append("include",setArrayInclude.value);
-        formData.append("exclusive",setArrayExclusive.value);
-        formData.append("person",isPerson);
-        formData.append("price",isPrice);
-        formData.append("title",isTitles);
-        formData.append("content",isContent);
-
-        try{
-            const result = await axios.get("https://backend-product-eab54o3b3q-as.a.run.app/api/update/product");
-            if(result.data.status === "ok"){
-                alert("update success!")
-            }else{
-                console.log(result.data.status);
-                alert(result.data.status)
+            for(let i = 0; i < setArrayObj.value.length; i++){
+                formData.append("objective", setArrayObj.value[i]);
             }
-        }catch(err){
-            console.log(err)
-            alert(err)
+            
+            for(let i = 0; i < setArrayInclude.value.length; i++){
+                formData.append("include",setArrayInclude.value[i]);
+            }
+
+            for(let i = 0; i < setArrayExclusive.value.length; i++){
+                formData.append("exclusive",setArrayExclusive.value[i]);
+            }
+
+            for(let i = 0; i < isPerson.length; i++){
+                formData.append("person",isPerson[i]);
+            }
+
+            for(let i = 0; i < isPrice.length; i++){
+                formData.append("price",isPrice[i]);
+            }
+
+            for(let i = 0; i < isTitle.length; i++){
+                formData.append("title",isTitle[i]);
+            }
+
+            for(let i = 0; i < isContent.length; i++){
+                formData.append("content",isContent[i]);
+            }
+
+            try{
+                const result = await axios.post("https://backend-product-eab54o3b3q-as.a.run.app/api/update/product",formData);
+                if(result.data.status === "ok"){
+                    alert("update success!")
+                }else{
+                    console.log(result.data.status);
+                    alert(result.data.status)
+                }
+            }catch(err){
+                console.log(err)
+                alert(err)
+            }
+        }else{
+            
+            formData.append("region", setRegion.value);
+            formData.append("productName",store.state.isProductName);
+            formData.append("introduction",setIntro);
+
+            for(let i = 0; i < setArrayObj.value.length; i++){
+                formData.append("objective", setArrayObj.value[i]);
+            }
+            
+            for(let i = 0; i < setArrayInclude.value.length; i++){
+                formData.append("include",setArrayInclude.value[i]);
+            }
+
+            for(let i = 0; i < setArrayExclusive.value.length; i++){
+                formData.append("exclusive",setArrayExclusive.value[i]);
+            }
+
+            for(let i = 0; i < isPerson.length; i++){
+                formData.append("person",isPerson[i]);
+            }
+
+            for(let i = 0; i < isPrice.length; i++){
+                formData.append("price",isPrice[i]);
+            }
+
+            for(let i = 0; i < isTitle.length; i++){
+                formData.append("title",isTitle[i]);
+            }
+
+            for(let i = 0; i < isContent.length; i++){
+                formData.append("content",isContent[i]);
+            }
+
+            try{
+                const result = await axios.post("https://backend-product-eab54o3b3q-as.a.run.app/api/update/product",formData);
+                if(result.data.status === "ok"){
+                    alert("update success!")
+                }else{
+                    console.log(result.data.status);
+                    alert(result.data.status)
+                }
+            }catch(err){
+                console.log(err)
+                alert(err)
+            }
         }
+
+        
 
 
     }
@@ -145,7 +216,7 @@
 <template>
     <div class="set-prodcut-p">
         <div class="set-title text-center">
-            <div>{{ store.state.isProductName }}</div>
+            <div class="mt-10"> <span class="font-bold">Product name</span> {{ store.state.isProductName }}</div>
         </div>
         <div class="set-detail">
             <div>
@@ -159,7 +230,7 @@
                     </template>
                 </carousel>
             </div>
-            <div>
+            <div class="ml-10">
                 <div class="mt-5" >
                     <img class="set-img ml-2 mr-2" v-for="(img, idx) in arrayImgUrl" :key="idx" :src="img" width="250" height="250"/>
                 </div>
@@ -212,16 +283,16 @@
                     <div class="ml-10 mb-4 font-bold border-b-[1px]">Day {{idx +1}}</div>
                     <div class="title-content">
                         <div class="font-bold ml-10">Title</div>
-                        <input class="ml-10 mt-3 border-[1px] rounded-md" v-model="el.Title"/>
+                        <div class="mt-3 ml-10">{{el.Title}}</div>
                     </div>
                     <div class=" mt-1 mb-3 ml-10 mr-2 ">
                         <div class="mt-5 font-bold">Content</div>
                         <div class="card-intro">
-                            <textarea class="border-[1px] mt-3" v-model="el.Content"></textarea>
+                            <div class="mt-3">{{el.Content}}</div>
                         </div>
                     </div>
                 </div>
-                <div class="ml-10">
+                <div class="ml-10 border-t-[1px]">
                     <div>
                         <div>
                             Title

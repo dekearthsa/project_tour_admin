@@ -80,7 +80,6 @@
                     <CardProduct :isData="el" />
                 </div>
             </div>
-            
         </div>
     </div>
 </template>
